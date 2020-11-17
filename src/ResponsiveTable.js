@@ -29,6 +29,7 @@ class ResponsiveTable extends Component {
       page,
       rowsPerPage,
       showPagination,
+      DataGridProps,
       implementation,
       ExpansionPanelDetailsProps,
       ExpansionPanelDetailsTypographyProps,
@@ -62,6 +63,7 @@ class ResponsiveTable extends Component {
             page={page}
             rowsPerPage={rowsPerPage}
             showPagination={showPagination}
+            DataGridProps={DataGridProps}
             TableBodyCellProps={TableBodyCellProps}
             TableBodyProps={TableBodyProps}
             TableBodyRowProps={TableBodyRowProps}

@@ -19,7 +19,7 @@ export default class DataList extends Component {
     return true;
   }
 
-  handleChangePage = (event, page) => this.props.onChangePage(event, page)
+  handleChangePage = (event, page) => this.props.onChangePage({event, page})
 
   getRowClass = (index) => {
     const {rowsClassArray} = this.props;
@@ -32,7 +32,7 @@ export default class DataList extends Component {
       ? <CellRenderer column={columns[0]} row={row} data={data} />
       : primaryColumns
         .map(column => (
-          <CellRenderer key={column.key} column={column} row={row} data={data} />
+          <CellRenderer key={column.field} column={column} row={row} data={data} />
         ))
         .reduce((prev, next) => [prev, ' ', next]) // divide item headers by space
   }
@@ -42,7 +42,7 @@ export default class DataList extends Component {
       {columns
         .filter(column => !excludePrimary || !column.primary)
         .map((column, index) => (
-          <Grid key={`${column.label}-${index}`} container>
+          <Grid key={`${column.headerName}-${index}`} container>
             <Grid item xs>
               <LabelRenderer column={column} data={data} />
             </Grid>
