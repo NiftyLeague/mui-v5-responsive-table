@@ -1,5 +1,5 @@
 {
-  "name": "material-ui-next-responsive-table",
+  "name": "material-ui-ts-responsive-table",
   "version": "0.5.1",
   "description": "Responsive read-only table <-> expandable list for material-ui",
   "main": "lib/index.js",
@@ -10,7 +10,8 @@
   ],
   "scripts": {
     "build": "babel src -d lib",
-    "prepublish": "babel src -d lib"
+    "prepublish": "babel src -d lib",
+    "tsc": "tsc"
   },
   "repository": {
     "type": "git",
@@ -35,8 +36,13 @@
   },
   "homepage": "https://github.com/local-insights/material-ui-next-responsive-table#readme",
   "devDependencies": {
-    "@material-ui/core": "^3.8.1",
-    "@material-ui/icons": "^3.0.1",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/data-grid": "^4.0.0-alpha.9",
+    "@material-ui/icons": "^4.9.1",
+    "@types/lodash": "^4.14.162",
+    "@types/material-ui": "^0.21.8",
+    "@types/react": "16.9.53",
+    "@types/react-dom": "16.9.8",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
@@ -44,13 +50,14 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "lodash.isequal": "^4.5.0"
+    "lodash.isequal": "^4.5.0",
+    "typescript": "^4.0.5"
   },
   "peerDependencies": {
-    "@material-ui/core": "^3.8.1",
-    "@material-ui/icons": "^3.0.1",
-    "react": "^16.7.0"
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/data-grid": "^4.0.0-alpha.7",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   }
 }
