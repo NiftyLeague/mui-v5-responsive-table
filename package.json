@@ -37,7 +37,7 @@
   "homepage": "https://github.com/alexnexusai/material-ui-ts-responsive-table#readme",
   "devDependencies": {
     "@material-ui/core": "^4.11.0",
-    "@material-ui/data-grid": "^4.0.0-alpha.9",
+    "@material-ui/data-grid": "^4.0.0-alpha.14",
     "@material-ui/icons": "^4.9.1",
     "@types/lodash": "^4.14.162",
     "@types/material-ui": "^0.21.8",
@@ -56,7 +56,7 @@
   "peerDependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
-    "@material-ui/data-grid": "^4.0.0-alpha.7",
+    "@material-ui/data-grid": "^4.0.0-alpha.14",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   }
