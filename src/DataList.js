@@ -1,46 +1,98 @@
-import React, { Component } from 'react'
-import Grid from '@material-ui/core/Grid'
+import React, { Component } from "react";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import Checkbox from "@material-ui/core/Checkbox";
+import Typography from "@material-ui/core/Typography";
+import withStyles from "@material-ui/core/styles/withStyles";
 
-import { CellRenderer, LabelRenderer } from './Renderer'
-import ExpandableListItem from './ExpandableListItem'
-import NoContent from './NoContent'
-import Pagination from './Pagination'
-import _isEqual from 'lodash.isequal';
+import { CellRenderer, LabelRenderer } from "./Renderer";
+import ExpandableListItem from "./ExpandableListItem";
+import NoContent from "./NoContent";
+import Pagination from "./Pagination";
+import _isEqual from "lodash.isequal";
+import { cloneDeep } from "lodash";
+
+const styles = {
+  selectAllBox: {
+    padding: `12px 16px`,
+  },
+  checkbox: {
+    padding: `0 10px 5px 0`,
+  },
+};
 
 /**
  * List with expandable items - mobile table analogue
  */
-export default class DataList extends Component {
+class DataList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { selection: [] };
+  }
+
   shouldComponentUpdate(nextProps) {
-    const {enableShouldComponentUpdate, data} = this.props;
+    const { enableShouldComponentUpdate, data } = this.props;
     if (enableShouldComponentUpdate) {
-      return (!_isEqual(nextProps.data, data));
+      return !_isEqual(nextProps.data, data);
     }
     return true;
   }
 
-  handleChangePage = (event, page) => this.props.onChangePage({event, page})
+  handleChangePage = (event, page) => this.props.onChangePage({ event, page });
+
+  handleSelection = (row) => {
+    const { onSelectionChange } = this.props;
+    const { selection } = this.state;
+    const newSelection = cloneDeep(selection);
+    if (newSelection.indexOf(row.id) === -1) {
+      newSelection.push(row.id);
+    } else {
+      newSelection.splice(newSelection.indexOf(row.id), 1);
+    }
+    this.setState({ selection: newSelection });
+    onSelectionChange({ rowIds: newSelection });
+  };
+
+  handleSelectAll = () => {
+    const { onSelectionChange, data, rowsPerPage } = this.props;
+    const { selection } = this.state;
+    let newSelection = cloneDeep(selection);
+    if (newSelection.length > 0) {
+      newSelection = [];
+    } else {
+      newSelection = data.map((row) => row.id);
+    }
+    this.setState({ selection: newSelection });
+    onSelectionChange({ rowIds: newSelection });
+  };
 
   getRowClass = (index) => {
-    const {rowsClassArray} = this.props;
-    return rowsClassArray && rowsClassArray[index] ? rowsClassArray[index] : '';
-  }
+    const { rowsClassArray } = this.props;
+    return rowsClassArray && rowsClassArray[index] ? rowsClassArray[index] : "";
+  };
 
   createListItemTitle = (columns, row, data) => {
-    const primaryColumns = columns.filter(column => column.primary)
-    return primaryColumns.length === 0
-      ? <CellRenderer column={columns[0]} row={row} data={data} />
-      : primaryColumns
-        .map(column => (
-          <CellRenderer key={column.field} column={column} row={row} data={data} />
+    const primaryColumns = columns.filter((column) => column.primary);
+    return primaryColumns.length === 0 ? (
+      <CellRenderer column={columns[0]} row={row} data={data} />
+    ) : (
+      primaryColumns
+        .map((column) => (
+          <CellRenderer
+            key={column.field}
+            column={column}
+            row={row}
+            data={data}
+          />
         ))
-        .reduce((prev, next) => [prev, ' ', next]) // divide item headers by space
-  }
+        .reduce((prev, next) => [prev, " ", next])
+    ); // divide item headers by space
+  };
 
   createListItemDescription = (columns, row, data, excludePrimary) => (
     <div>
       {columns
-        .filter(column => !excludePrimary || !column.primary)
+        .filter((column) => !excludePrimary || !column.primary)
         .map((column, index) => (
           <Grid key={`${column.headerName}-${index}`} container>
             <Grid item xs>
@@ -50,14 +102,16 @@ export default class DataList extends Component {
               <CellRenderer column={column} row={row} data={data} />
             </Grid>
           </Grid>
-      ))}
+        ))}
     </div>
-  )
+  );
 
   render() {
     const {
+      classes,
       columns,
       count,
+      checkboxSelection,
       data,
       excludePrimaryFromDetails,
       noContentText,
@@ -74,23 +128,45 @@ export default class DataList extends Component {
       ExpansionPanelSummaryTypographyProps,
       SelectedExpansionPanelProps,
       TablePaginationProps,
-    } = this.props
-    if (!Array.isArray(data)
-      || data.length === 0
-      || !Array.isArray(columns)
-      || columns.length === 0) {
-      return <NoContent text={noContentText} />
+    } = this.props;
+    const { selection } = this.state;
+    if (
+      !Array.isArray(data) ||
+      data.length === 0 ||
+      !Array.isArray(columns) ||
+      columns.length === 0
+    ) {
+      return <NoContent text={noContentText} />;
     }
 
     return (
       <div>
+        {checkboxSelection && (
+          <Box className={classes.selectAllBox}>
+            <Checkbox
+              className={classes.checkbox}
+              checked={selection.length}
+              indeterminate={selection.length > 0}
+              onClick={this.handleSelectAll}
+            />
+            <Typography component={`span`}>Select All</Typography>
+          </Box>
+        )}
         {data.map((row, index) => (
           <ExpandableListItem
             key={index}
+            onSelect={this.handleSelection}
             panelClass={this.getRowClass(index)}
             summary={this.createListItemTitle(columns, row, data)}
-            details={this.createListItemDescription(columns, row, data, excludePrimaryFromDetails)}
-            selected={row.selected}
+            row={row}
+            details={this.createListItemDescription(
+              columns,
+              row,
+              data,
+              excludePrimaryFromDetails
+            )}
+            checkboxSelection={checkboxSelection}
+            selected={selection.indexOf(row.id) !== -1}
             scrollToSelected={scrollToSelected}
             scrollOptions={scrollOptions}
             ExpansionPanelDetailsProps={ExpansionPanelDetailsProps}
@@ -106,8 +182,7 @@ export default class DataList extends Component {
             SelectedExpansionPanelProps={SelectedExpansionPanelProps}
           />
         ))}
-        {
-          showPagination &&
+        {showPagination && (
           <Pagination
             component="div"
             count={count}
@@ -116,8 +191,10 @@ export default class DataList extends Component {
             TablePaginationProps={TablePaginationProps}
             onChangePage={this.handleChangePage}
           />
-        }
+        )}
       </div>
-    )
+    );
   }
 }
+
+export default withStyles(styles)(DataList);

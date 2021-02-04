@@ -4,6 +4,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpansionPanel from '@material-ui/core/Accordion';
 import ExpansionPanelSummary from '@material-ui/core/AccordionSummary';
 import ExpansionPanelDetails from '@material-ui/core/AccordionDetails';
+import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
@@ -15,6 +16,9 @@ const styles = {
     opacity: 0.5,
     width: '100%',
   },
+  checkbox: {
+    padding: `0 10px 5px 0`
+  }
 };
 
 /**
@@ -29,9 +33,17 @@ class ExpandableListItem extends Component {
     }
   }
 
+  onSelect = (event) => {
+    const { onSelect, row } = this.props;
+
+    onSelect(row);
+    event.stopPropagation();
+  }
+
   render() {
     const {
       classes,
+      checkboxSelection,
       panelClass,
       details,
       selected,
@@ -55,6 +67,7 @@ class ExpandableListItem extends Component {
           expandIcon={<ExpandMoreIcon {...ExpansionPanelMoreIconProps} />}
           {...ExpansionPanelSummaryProps}
         >
+          {checkboxSelection && <Checkbox className={classes.checkbox} checked={selected} onClick={this.onSelect} />}
           <Typography
             classes={{
               root: classes.summaryText,
