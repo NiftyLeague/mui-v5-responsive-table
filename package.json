@@ -1,6 +1,6 @@
 {
   "name": "material-ui-ts-responsive-table",
-  "version": "0.6.1-1",
+  "version": "0.6.3",
   "description": "Responsive read-only datagrid <-> expandable list for material-ui",
   "main": "lib/index.js",
   "files": [

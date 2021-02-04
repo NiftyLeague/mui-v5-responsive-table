@@ -20,12 +20,14 @@ class ResponsiveTable extends Component {
       classes,
       columns,
       count,
+      checkboxSelection,
       data,
       rowsClassArray,
       excludePrimaryFromDetails,
       noContentText,
       tableBreakpoints,
       listBreakpoints,
+      onSelectionChange,
       page,
       rowsPerPage,
       showPagination,
@@ -83,7 +85,9 @@ class ResponsiveTable extends Component {
             enableShouldComponentUpdate={enableShouldComponentUpdate}
             columns={columns}
             count={count}
+            checkboxSelection={checkboxSelection}
             data={data}
+            onSelectionChange={onSelectionChange}
             rowsClassArray={rowsClassArray}
             excludePrimaryFromDetails={excludePrimaryFromDetails}
             noContentText={noContentText}
