@@ -27,8 +27,7 @@ const styles = {
 class ExpandableListItem extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.selected && nextProps.scrollToSelected) {
-      // @mui/material encourages ReactDOM until React find better way
-      // https://@mui/material.com/getting-started/frequently-asked-questions/#how-can-i-access-the-dom-element-
+      //https://mui.com/getting-started/faq/#how-can-i-access-the-dom-element
       ReactDOM.findDOMNode(this).scrollIntoView(nextProps.scrollOptions || { behavior: 'smooth', block: 'center' })
     }
   }
