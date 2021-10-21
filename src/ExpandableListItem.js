@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpansionPanel from '@mui/material/Accordion';
 import ExpansionPanelSummary from '@mui/material/AccordionSummary';
 import ExpansionPanelDetails from '@mui/material/AccordionDetails';
