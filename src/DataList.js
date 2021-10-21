@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Checkbox from "@material-ui/core/Checkbox";
-import Typography from "@material-ui/core/Typography";
-import withStyles from "@material-ui/core/styles/withStyles";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Checkbox from "@mui/material/Checkbox";
+import Typography from "@mui/material/Typography";
+import withStyles from "@mui/material/styles/withStyles";
 
 import { CellRenderer, LabelRenderer } from "./Renderer";
 import ExpandableListItem from "./ExpandableListItem";
