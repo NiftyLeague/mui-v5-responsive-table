@@ -1,10 +1,10 @@
 export const CellRenderer = ({ column, row, data }) => {
   let cell = row[column.field];
   if (column.valueGetter) {
-    cell = column.valueGetter({ value: cell, data: row, data })
+    cell = column.valueGetter({ value: cell, data: row })
   }
   if (column.renderCell) {
-    cell = column.renderCell({ value: cell, data: row, data })
+    cell = column.renderCell({ value: cell, data: row })
   }
   return cell;
 }

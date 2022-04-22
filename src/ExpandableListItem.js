@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ExpansionPanel from '@material-ui/core/Accordion';
-import ExpansionPanelSummary from '@material-ui/core/AccordionSummary';
-import ExpansionPanelDetails from '@material-ui/core/AccordionDetails';
-import Checkbox from '@material-ui/core/Checkbox';
-import Typography from '@material-ui/core/Typography';
-import withStyles from '@material-ui/core/styles/withStyles';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpansionPanel from '@mui/material/Accordion';
+import ExpansionPanelSummary from '@mui/material/AccordionSummary';
+import ExpansionPanelDetails from '@mui/material/AccordionDetails';
+import Checkbox from '@mui/material/Checkbox';
+import Typography from '@mui/material/Typography';
+import withStyles from '@mui/material/styles/withStyles';
 
 const styles = {
   summaryText: {
@@ -27,8 +27,7 @@ const styles = {
 class ExpandableListItem extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.selected && nextProps.scrollToSelected) {
-      // @material-ui/core encourages ReactDOM until React find better way
-      // https://@material-ui/core.com/getting-started/frequently-asked-questions/#how-can-i-access-the-dom-element-
+      //https://mui.com/getting-started/faq/#how-can-i-access-the-dom-element
       ReactDOM.findDOMNode(this).scrollIntoView(nextProps.scrollOptions || { behavior: 'smooth', block: 'center' })
     }
   }
