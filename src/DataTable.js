@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { DataGrid } from "@material-ui/data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import _isEqual from "lodash.isequal";
 
 /**
