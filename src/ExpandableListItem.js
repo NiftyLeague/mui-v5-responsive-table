@@ -6,7 +6,7 @@ import ExpansionPanelSummary from '@mui/material/AccordionSummary';
 import ExpansionPanelDetails from '@mui/material/AccordionDetails';
 import Checkbox from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
-import withStyles from '@mui/material/styles/withStyles';
+import { withStyles } from "@mui/styles";
 
 const styles = {
   summaryText: {
