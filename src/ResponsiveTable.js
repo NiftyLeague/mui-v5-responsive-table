@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Hidden from '@mui/material/Hidden'
-import { withStyles } from '@mui/material/styles'
+import { withStyles } from "@mui/styles";
 
 import DataList from './DataList'
 import DataTable from './DataTable'
