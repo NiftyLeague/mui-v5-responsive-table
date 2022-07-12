@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ExpansionPanel from '@mui/material/Accordion';
-import ExpansionPanelSummary from '@mui/material/AccordionSummary';
-import ExpansionPanelDetails from '@mui/material/AccordionDetails';
-import Checkbox from '@mui/material/Checkbox';
-import Typography from '@mui/material/Typography';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpansionPanel from "@mui/material/Accordion";
+import ExpansionPanelSummary from "@mui/material/AccordionSummary";
+import ExpansionPanelDetails from "@mui/material/AccordionDetails";
+import Checkbox from "@mui/material/Checkbox";
+import Typography from "@mui/material/Typography";
 import { withStyles } from "@mui/styles";
 
 const styles = {
   summaryText: {
-    width: '100%',
+    width: "100%",
   },
   detailsText: {
     opacity: 0.5,
-    width: '100%',
+    width: "100%",
   },
   checkbox: {
-    padding: `0 10px 5px 0`
-  }
+    padding: `0 10px 5px 0`,
+  },
 };
 
 /**
@@ -28,7 +28,9 @@ class ExpandableListItem extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.selected && nextProps.scrollToSelected) {
       //https://mui.com/getting-started/faq/#how-can-i-access-the-dom-element
-      ReactDOM.findDOMNode(this).scrollIntoView(nextProps.scrollOptions || { behavior: 'smooth', block: 'center' })
+      ReactDOM.findDOMNode(this).scrollIntoView(
+        nextProps.scrollOptions || { behavior: "smooth", block: "center" }
+      );
     }
   }
 
@@ -37,7 +39,7 @@ class ExpandableListItem extends Component {
 
     onSelect(row);
     event.stopPropagation();
-  }
+  };
 
   render() {
     const {
@@ -61,12 +63,18 @@ class ExpandableListItem extends Component {
       : ExpansionPanelProps;
 
     return (
-      <ExpansionPanel className={panelClass && panelClass} {...rootProps} >
+      <ExpansionPanel className={panelClass && panelClass} {...rootProps}>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon {...ExpansionPanelMoreIconProps} />}
           {...ExpansionPanelSummaryProps}
         >
-          {checkboxSelection && <Checkbox className={classes.checkbox} checked={selected} onClick={this.onSelect} />}
+          {checkboxSelection && (
+            <Checkbox
+              className={classes.checkbox}
+              checked={selected}
+              onClick={this.onSelect}
+            />
+          )}
           <Typography
             classes={{
               root: classes.summaryText,
@@ -91,8 +99,8 @@ class ExpandableListItem extends Component {
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
-    )
+    );
   }
 }
 
-export default withStyles(styles)(ExpandableListItem)
+export default withStyles(styles)(ExpandableListItem);
