@@ -38,7 +38,7 @@ class DataList extends Component {
     return true;
   }
 
-  handleChangePage = (event, page) => this.props.onChangePage({ event, page });
+  handleChangePage = (params) => this.props.onChangePage(params);
 
   handleSelection = (row) => {
     const { onSelectionChange } = this.props;
@@ -152,36 +152,38 @@ class DataList extends Component {
             <Typography component={`span`}>Select All</Typography>
           </Box>
         )}
-        {data.map((row, index) => (
-          <ExpandableListItem
-            key={index}
-            onSelect={this.handleSelection}
-            panelClass={this.getRowClass(index)}
-            summary={this.createListItemTitle(columns, row, data)}
-            row={row}
-            details={this.createListItemDescription(
-              columns,
-              row,
-              data,
-              excludePrimaryFromDetails
-            )}
-            checkboxSelection={checkboxSelection}
-            selected={selection.indexOf(row.id) !== -1}
-            scrollToSelected={scrollToSelected}
-            scrollOptions={scrollOptions}
-            ExpansionPanelDetailsProps={ExpansionPanelDetailsProps}
-            ExpansionPanelDetailsTypographyProps={
-              ExpansionPanelDetailsTypographyProps
-            }
-            ExpansionPanelMoreIconProps={ExpansionPanelMoreIconProps}
-            ExpansionPanelProps={ExpansionPanelProps}
-            ExpansionPanelSummaryProps={ExpansionPanelSummaryProps}
-            ExpansionPanelSummaryTypographyProps={
-              ExpansionPanelSummaryTypographyProps
-            }
-            SelectedExpansionPanelProps={SelectedExpansionPanelProps}
-          />
-        ))}
+        {data
+          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+          .map((row, index) => (
+            <ExpandableListItem
+              key={index}
+              onSelect={this.handleSelection}
+              panelClass={this.getRowClass(index)}
+              summary={this.createListItemTitle(columns, row, data)}
+              row={row}
+              details={this.createListItemDescription(
+                columns,
+                row,
+                data,
+                excludePrimaryFromDetails
+              )}
+              checkboxSelection={checkboxSelection}
+              selected={selection.indexOf(row.id) !== -1}
+              scrollToSelected={scrollToSelected}
+              scrollOptions={scrollOptions}
+              ExpansionPanelDetailsProps={ExpansionPanelDetailsProps}
+              ExpansionPanelDetailsTypographyProps={
+                ExpansionPanelDetailsTypographyProps
+              }
+              ExpansionPanelMoreIconProps={ExpansionPanelMoreIconProps}
+              ExpansionPanelProps={ExpansionPanelProps}
+              ExpansionPanelSummaryProps={ExpansionPanelSummaryProps}
+              ExpansionPanelSummaryTypographyProps={
+                ExpansionPanelSummaryTypographyProps
+              }
+              SelectedExpansionPanelProps={SelectedExpansionPanelProps}
+            />
+          ))}
         {showPagination && (
           <Pagination
             component="div"
