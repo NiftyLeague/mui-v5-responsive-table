@@ -76,17 +76,17 @@ class DataList extends Component {
     return primaryColumns.length === 0 ? (
       <CellRenderer column={columns[0]} row={row} data={data} />
     ) : (
-      primaryColumns
-        .map((column) => (
+      primaryColumns.map((column, index) => (
+        <Typography sx={{ flex: index === 0 ? 0.5 : 1 }}>
           <CellRenderer
             key={column.field}
             column={column}
             row={row}
             data={data}
           />
-        ))
-        .reduce((prev, next) => [prev, " ", next])
-    ); // divide item headers by space
+        </Typography>
+      ))
+    );
   };
 
   createListItemDescription = (columns, row, data, excludePrimary) => (

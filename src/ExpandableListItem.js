@@ -11,6 +11,7 @@ import { withStyles } from "@mui/styles";
 const styles = {
   summaryText: {
     width: "100%",
+    display: "flex",
   },
   detailsText: {
     opacity: 0.5,
@@ -79,7 +80,6 @@ class ExpandableListItem extends Component {
             classes={{
               root: classes.summaryText,
             }}
-            gutterBottom
             variant="subtitle1"
             {...ExpansionPanelSummaryTypographyProps}
           >
