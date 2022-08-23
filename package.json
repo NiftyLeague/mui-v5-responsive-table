@@ -1,6 +1,6 @@
 {
   "name": "mui-v5-responsive-table",
-  "version": "0.6.8",
+  "version": "0.6.9",
   "description": "Responsive read-only datagrid <-> expandable list for material-ui",
   "main": "lib/index.js",
   "files": [
@@ -32,9 +32,9 @@
   "author": "support@localinsights.io",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mui-responsive-table/issues"
+    "url": "https://github.com/niftynic/mui-responsive-table/issues"
   },
-  "homepage": "https://github.com/mui-responsive-table#readme",
+  "homepage": "https://github.com/niftynic/mui-responsive-table#readme",
   "devDependencies": {
     "@babel/cli": "^7.15.7",
     "@babel/core": "^7.15.8",
