@@ -1,6 +1,6 @@
-# mui-v5-responsive-table
+# mui5-responsive-table
 
-[![npm Package](https://img.shields.io/npm/v/mui-v5-responsive-table.svg)](https://www.npmjs.com/package/mui-v5-responsive-table)
+[![npm Package](https://img.shields.io/npm/v/mui5-responsive-table.svg)](https://www.npmjs.com/package/mui5-responsive-table)
 
 This project provides read-only responsive table for [Material-UI][material-ui].
 
@@ -11,13 +11,13 @@ Table is shown for desktop screen, list of expandable items - for tablet and mob
 ## Installation
 
 ```
-npm i --save mui-v5-responsive-table
+npm i --save mui5-responsive-table
 ```
 
 ## Usage
 
 ```jsx
-import ResponsiveTable from 'mui-v5-responsive-table'
+import ResponsiveTable from 'mui5-responsive-table'
 
 const columns = [
   { field: 'id',
