@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/diego-nifty/material-ui-responsive-table.git"
+    "url": "git+https://github.com/niftynic/mui-responsive-table.git"
   },
   "keywords": [
     "material-ui-next",
@@ -32,9 +32,9 @@
   "author": "support@localinsights.io",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/diego-nifty/material-ui-responsive-table/issues"
+    "url": "https://github.com/mui-responsive-table/issues"
   },
-  "homepage": "https://github.com/diego-nifty/material-ui-responsive-table#readme",
+  "homepage": "https://github.com/mui-responsive-table#readme",
   "devDependencies": {
     "@babel/cli": "^7.15.7",
     "@babel/core": "^7.15.8",
